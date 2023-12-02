@@ -1,0 +1,368 @@
+﻿
+@model rollAppTest1.Models.EmployDetail
+
+<h2>Nhập thông tin khách hàng </h2>
+<div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="custumer-tab" data-toggle="tab" data-target="#customer" type="button" role="tab" aria-controls="customer" aria-selected="true">Nhập danh sách nhân viên</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="salary-tab" data-toggle="tab" data-target="#salary" type="button" role="tab" aria-controls="salary" aria-selected="false">Bảng tính lương</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="customer" role="tabpanel" aria-labelledby="customer-tab">
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formDataUser" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="wrapInput">
+                    <div class="col-md-6 box-lf">
+                        <span class="label-ip">Nhập tên đăng nhập</span>
+                        <input type="text" placeholder="Tên đăng nhập" id="userName" />
+                        <span class="validate-error" id="userNameError"></span>
+                    </div>
+                    <div class="col-md-6 box-rt">
+                        <span class="label-ip">Nhập mật khẩu</span>
+                        <div class="box-password">
+                            <input type="password" placeholder="Mật khẩu" id="passWord" />
+                            <span class="material-symbols-outlined">
+                                visibility_off
+                            </span>
+                        </div>
+                        <span class="validate-error" id="passWordError"></span>
+                    </div>
+                </div>
+                <div class="wrapInput">
+                    <div class="col-md-6 box-lf">
+                        <span class="label-ip">Nhập họ và tên</span>
+                        <input type="text" placeholder="Họ và Tên" id="fullName" />
+                        <span class="validate-error" id="fullNameError"></span>
+                    </div>
+                    <div class="col-md-6 box-rt">
+                        <span class="label-ip">Nhập địa chỉ</span>
+                        <input type="text" placeholder="Địa chỉ" id="address" />
+                        <span class="validate-error" id="addressError"></span>
+                    </div>
+                </div>
+                <div class="wrapInput">
+                    <div class="col-md-6 box-lf">
+                        <span class="label-ip">Nhập ngày sinh</span>
+                        <input type="date" id="dob" />
+                        <span class="validate-error" id="dobError"></span>
+                    </div>
+                    <div class="col-md-6 box-rt">
+                        <span class="label-ip">Nhập email</span>
+                        <input type="email" placeholder="Email" id="email" />
+                        <span class="validate-error" id="emailError"></span>
+                    </div>
+                </div>
+                <div class="wrapInput">
+                    <div class="col-md-6 box-lf">
+                        <span class="label-ip">Nhập số điện thoại</span>
+                        <input type="text" placeholder="Số điện thoại" id="phoneNumber" />
+                        <span class="validate-error" id="phoneNumberError"></span>
+                    </div>
+                    <div class="col-md-6 box-rt">
+                        <span class="label-ip">Nhập ngày thử việc</span>
+                        <input type="date" id="probationDay" />
+                        <span class="validate-error" id="probationDayError"></span>
+                    </div>
+                </div>
+                <div class="wrapInput">
+                    <div class="col-md-6 box-lf">
+                        <span class="label-ip">Nhập ngày chính thức</span>
+                        <input type="date" id="offlineDay" />
+                        <span class="validate-error" id="offlineDayError"></span>
+                    </div>
+                    <div class="col-md-6 box-rt">
+                        <span class="label-ip">Nhập mức lương</span>
+                        <input type="text" placeholder="Mức lương" id="salaryOfUser" />
+                        <span class="validate-error" id="salaryOfUserError"></span>
+                    </div>
+                </div>
+                <div class="wrapInput">
+                    <div class="col-md-6 box-lf">
+                        <span class="label-ip">Tỷ lệ và giá trị lương theo thời gian</span>
+                        <input type="text" placeholder="Nhập tỷ lệ" id="ratioByTime" />
+                        <span class="validate-error" id="ratioByTimeError"></span>
+                    </div>
+                    <div class="col-md-6 box-rt">
+                        <span class="label-ip">Tỷ lệ và giá trị lương theo hiệu quả</span>
+                        <input type="text" placeholder="Nhập tỷ lệ" id="ratioByeffective" />
+                        <span class="validate-error" id="ratioByeffectiveError"></span>
+                    </div>
+                </div>
+                <div class="box-submit">
+                    <button type="submit">Submit </button>
+                </div>
+            }
+        </div>
+        <div class="tab-pane fade" id="salary" role="tabpanel" aria-labelledby="salary-tab">
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formSalaryUser" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="wrapInput">
+                    <div class="col-md-6 box-lf">
+                        <span class="label-ip">Nhập mã nhân viên</span>
+                        <input type="text" placeholder="Mã nhân viên" id="employeeName" />
+                        <span class="validate-error" id="employeeNameError"></span>
+                    </div>
+                    <div class="col-md-6 box-rt">
+                        <span class="label-ip">Nhập số ngày trong tháng</span>
+                        <input type="number" placeholder="Số ngày trong tháng " id="dayPerMonth" />
+                        <span class="validate-error" id="dayPerMonthError"></span>
+                    </div>
+                </div>
+                <div class="wrapInput">
+                    <div class="col-md-6 box-lf">
+                        <span class="label-ip">Nhập số ngày đi làm</span>
+                        <input type="number" placeholder="Số ngày đi làm" id="dayOfWorking" />
+                        <span class="validate-error" id="dayOfWorkingError"></span>
+                    </div>
+                    <div class="col-md-6 box-rt">
+                        <span class="label-ip">Nhập mức độ hoàn thành công việc</span>
+                        <input type="text" placeholder="Mức độ hoàn thành công việc" id="levelComplete" />
+                        <span class="validate-error" id="levelCompleteError"></span>
+                    </div>
+                </div>
+                <div class="box-submit">
+                    <button type="submit">Submit </button>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</div>
+<script>
+    document.onreadystatechange = function () {
+        if (document.readyState === "complete") {
+            let modelData = @Html.Raw(Json.Serialize(Model));
+            if (modelData !== null) {
+                let officialDay = modelData?.officialDay.split("/");
+                let probationDay = modelData?.probationDay.split("/");
+                let dob = modelData?.dob.split("/");
+                $("#userName").val(modelData?.userName);
+                $("#passWord").val(modelData?.passWord);
+                $("#fullName").val(modelData?.fullname);
+                $("#address").val(modelData?.address);
+                $("#dob").val(new Date(dob[2] + '/' + dob[1] + '/' + dob[0]).toISOString().slice(0, 10));
+                $("#email").val(modelData?.email);
+                $("#phoneNumber").val(modelData?.phoneNumber);
+                $("#probationDay").val(new Date(probationDay[2] + '/' + probationDay[1] + '/' + probationDay[0]).toISOString().slice(0, 10));
+                $("#salaryOfUser").val(modelData?.salary);
+                $("#ratioByTime").val(modelData?.salaryRateByTime);
+                $("#ratioByeffective").val(modelData?.salaryRateByEffective);
+                $('#employeeName').val(modelData?.userName);
+                $('#dayPerMonth').val(modelData?.dayPerMonth);
+                $('#dayOfWorking').val(modelData?.dayOfWorking);
+                $('#levelComplete').val(modelData?.levelComplete);
+                $("#offlineDay").val(new Date(officialDay[2] + '/' + officialDay[1] + '/' + officialDay[0]).toISOString().slice(0, 10));
+            }
+
+            $('#myTab button').on('click', function (event) {
+                event.preventDefault()
+                $(this).tab('show')
+            })
+            document.getElementById("formDataUser").addEventListener("submit", function (event) {
+                event.preventDefault();
+                validateAndSubmitDataUser(modelData?.userName);
+            });
+            document.getElementById("formSalaryUser").addEventListener("submit", function (event) {
+                event.preventDefault();
+                validateAndSubmitDataSalary(modelData?.userName);
+            });
+            $('.material-symbols-outlined').click(function () {
+                if ($('#passWord').attr('type') === 'password') {
+                    $('#passWord').attr('type', 'text');
+                    $('.material-symbols-outlined').text('visibility');
+                } else {
+                    $('#passWord').attr('type', 'password');
+                    $('.material-symbols-outlined').text('visibility_off');
+                }
+            })
+
+
+        }
+    };
+    function validateAndSubmitDataUser(empName) {
+        $('#userNameError').text('');
+        $('#passWordError').text('');
+        $('#fullNameError').text('');
+        $('#addressError').text('');
+        $('#dobError').text('');
+        $('#emailError').text('');
+        $('#phoneNumberError').text('');
+        $('#probationDayError').text('');
+        $('#offlineDayError').text('');
+        $('#salaryOfUserError').text('');
+        $('#ratioByTimeError').text('');
+        $('#ratioByeffectiveError').text('');
+
+        let userName = $('#userName')?.val();
+        let password = $('#passWord')?.val();
+        let fullName = $('#fullName')?.val();
+        let address = $('#address')?.val();
+        let dob = $('#dob')?.val();
+        let email = $('#email')?.val();
+        let phoneNumber = $('#phoneNumber')?.val();
+        let probationDay = $('#probationDay')?.val();
+        let offlineDay = $('#offlineDay')?.val();
+        let salaryOfUser = $('#salaryOfUser')?.val();
+        let ratioByTime = $('#ratioByTime')?.val();
+        let ratioByeffective = $('#ratioByeffective')?.val();
+
+        const emailRegex = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const phoneRegex = /^(84|0[3|5|7|8|9])+([0-9]{8,9})\b/;
+        let err = false;
+
+        if (userName === '') {
+            $('#userNameError').text('Vui lòng nhập username');
+            err = true;
+        }
+        if (password === '') {
+            $('#passWordError').text('Vui lòng nhập mật khẩu');
+            err = true;
+        }
+
+        if (fullName === '') {
+            $('#fullNameError').text('Vui lòng nhập họ tên');
+            err = true;
+        }
+        if (address === '') {
+            $('#addressError').text('Vui lòng nhập địa chỉ');
+            err = true;
+        }
+        if (dob === '') {
+            $('#dobError').text('Vui lòng nhập ngày sinh');
+            err = true;
+        }
+        if (email !=='' && !emailRegex.test(email)) {
+            $('#emailError').text('Email khống đúng định dạng');
+            err = true;
+        }
+        if (phoneNumber === '') {
+            $('#phoneNumberError').text('Số điện thoại không được để trống');
+            err = true;
+        } else if (!phoneRegex.test(phoneNumber)) {
+            $('#phoneNumberError').text('Số điện thoại không đúng định dạng');
+            err = true;
+        }
+        if (probationDay === '') {
+            $('#probationDayError').text('Ngày thử việc không được để trống');
+            err = true;
+        }
+        if (offlineDay === '') {
+            $('#offlineDayError').text('Ngày làm việc chính thức không được để trống');
+            err = true;
+        }
+
+        if (salaryOfUser === '') {
+            $('#salaryOfUserError').text('Mức lương không được để trống');
+            err = true;
+        }
+        if (ratioByTime === '') {
+            $('#ratioByTimeError').text('Vui lòng nhập tỷ lệ và giá trị lương theo thời gian');
+            err = true;
+        }
+        if (ratioByeffective === '') {
+            $('##ratioByeffectiveError').text('Vui lòng nhập tỷ lệ và giá trị lương theo hiệu quả');
+            err = true;
+        }
+        if (err) return false;
+        const cusomter = {
+            userName: userName,
+            passWord: password,
+            fullname: fullName,
+            address: address,
+            DOB: dob,
+            email : email,
+            phoneNumber: phoneNumber,
+            probationDay: probationDay,
+            officialDay: offlineDay,
+            salary: salaryOfUser,
+            salaryRateByTime: ratioByTime,
+            salaryRateByEffective: ratioByeffective
+        }
+        console.log(phoneNumber);
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("CreateUser", "User")',
+            data: JSON.stringify(cusomter),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response) {
+                if (response) {
+                    console.log(response);
+                    if (empName) {
+                        alert('Đã cập nhập thông tin nhân viên thành công')
+                    } else {
+                        alert('Đã thêm nhân viên thành công');
+                    }
+                }
+            },
+            error: function (error) {
+                // Xử lý lỗi
+                console.error('Error:', error);
+            }
+        });
+
+    }
+    function validateAndSubmitDataSalary(empName) {
+        $('#employeeNameError').text('');
+        $('#dayPerMonthError').text('');
+        $('#dayOfWorkingError').text('');
+        $('#levelCompleteError').text('');
+        let employeeName = $('#employeeName')?.val();
+        let dayPerMonth = $('#dayPerMonth')?.val();
+        let dayOfWorking = $('#dayOfWorking')?.val();
+        let levelComplete = $('#levelComplete')?.val();
+        let err = false;
+
+        if (employeeName === '') {
+            $('#employeeNameError').text('Vui lòng nhập username');
+            err = true;
+        }
+        if (dayPerMonth === '') {
+            $('#dayPerMonthError').text('Vui lòng nhập số ngày trong tháng');
+            err = true;
+        }
+        if (dayOfWorking === '') {
+            $('#dayOfWorkingError').text('Vui lòng nhập số ngày đi làm');
+            err = true;
+        }
+        if (levelComplete === '') {
+            $('#levelCompleteError').text('Vui lòng nhập mức độ đánh giá công việc');
+            err = true;
+        }
+        if (err) return false;
+        const salary = {
+            employeeName: employeeName,
+            dayPerMonth: dayPerMonth,
+            dayOfWorking: dayOfWorking,
+            levelComplete: levelComplete
+        }
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AddSalary", "Salary")',
+            data: JSON.stringify(salary),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response) {
+                if (empName) {
+                    alert('Đã cập nhật bảng lương thành công')
+                } else {
+                    alert('Đã thêm bảng lương thành công')
+                }
+            },
+            error: function (error) {
+                // Xử lý lỗi
+                console.error('Error:', error);
+            }
+        });
+
+    }
+</script>
+
+

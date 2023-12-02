@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@model List<rollAppTest1.Models.Employee>
+<div class="wrapper-list">
+    <h2>Danh sách nhân viên</h2>
+    <table border="1">
+        <thead>
+        <td>Họ và tên</td>
+        <td>Địa chỉ</td>
+        <td>Ngày sinh</td>
+        <td>Email</td>
+        <td>Số điện thoại</td>
+        <td>Ngày thử việc</td>
+        <td>Ngày chính thức</td>
+        <td>Mức lương</td>
+        <td>Tỷ lệ và giá trị lương theo tg</td>
+        <td>Tỷ lệ và giá trị lương theo hiệu quả</td>
+        <td></td>
+
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>
+                        @customer.fullname
+                    </td>
+                    <td>
+                        @customer.address
+                    </td>
+                    <td>
+                        @customer.DOB
+                    </td>
+                    <td>
+                        @customer.email
+                    </td>
+                    <td>
+                        @customer.phoneNumber
+                    </td>
+                    <td>
+                        @customer.probationDay
+                    </td>
+                    <td>
+                        @customer.officialDay
+                    </td>
+                    <td>
+                        @customer.salary
+                    </td>
+                    <td>
+                        @customer.salaryRateByTime
+                    </td>
+                    <td>
+                        @customer.salaryRateByEffective
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Customer", "Home", new { userName = customer.userName })">Sửa</a>
+                        <a href="javascript:void(0)" onclick=" deleteUser( '@customer.userName')">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<script>
+    function deleteUser(userName) {
+        let ans = confirm("Bạn có muốn xóa người dùng này không ?");
+        if (ans) {
+            $.ajax({
+                url: '@Url.Action("DeleteUser", "User")' ,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(userName ),
+                dataType: 'json',
+                success: function (result) {
+                    alert('Đã xóa thành công');
+                    window.location.reload();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    }
+</script>
+
